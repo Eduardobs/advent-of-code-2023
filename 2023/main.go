@@ -2,17 +2,16 @@ package main
 
 import (
 	"AdventOfCode/2023/Day1"
-	"AdventOfCode/2023/Day2"
 	"fmt"
 )
 
 func main() {
-	ExecuteDay1()
-	ExecuteDay2()
+	ExecuteDay1Problem1()
+	ExecuteDay1Problem2()
 }
 
-func ExecuteDay1() {
-	calibrateValue, err := Day1.FindCalibrateValue()
+func ExecuteDay1Problem1() {
+	calibrateValue, err := Day1.FindCalibrateValue(false)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -20,8 +19,8 @@ func ExecuteDay1() {
 	fmt.Printf("First day result: %d\n", calibrateValue)
 }
 
-func ExecuteDay2() {
-	calibrateValue, err := Day2.FindCalibrateValue()
+func ExecuteDay1Problem2() {
+	calibrateValue, err := Day1.FindCalibrateValue(true)
 	if err != nil {
 		fmt.Println(err)
 	}
