@@ -8,17 +8,16 @@ import (
 	"strings"
 )
 
-var colors = map[string]int{
+var colors = map[string]int64{
 	"red":   12,
 	"green": 13,
 	"blue":  14,
 }
 
-func CheckPossibleGames() (int, error) {
-
+func CheckPossibleGames() (int64, error) {
 	gameList, _ := loadInput()
 
-	possiblesGames := 0
+	var possiblesGames int64 = 0
 	for i := 0; i < len(gameList); i++ {
 		possiblesGames += checkGame(gameList[i])
 	}
@@ -35,7 +34,7 @@ func loadInput() ([]string, error) {
 	return strings.Split(string(content), "\n"), nil
 }
 
-func checkGame(game string) int {
+func checkGame(game string) int64 {
 	gameLine := strings.Split(game, ":")
 	gameID, _ := strconv.Atoi(strings.Split(gameLine[0], " ")[1])
 	gameSets := strings.Split(gameLine[1], ";")
@@ -46,7 +45,7 @@ func checkGame(game string) int {
 		}
 	}
 
-	return gameID
+	return int64(gameID)
 }
 
 func checkIsPossibleSet(gameSet string) bool {
@@ -61,7 +60,7 @@ func checkIsPossibleSet(gameSet string) bool {
 			return false
 		}
 
-		if count > colors[color] {
+		if int64(count) > colors[color] {
 			return false
 		}
 	}
@@ -69,10 +68,10 @@ func checkIsPossibleSet(gameSet string) bool {
 	return true
 }
 
-func SumPowerSets() (int, error) {
+func SumPowerSets() (int64, error) {
 	gameList, _ := loadInput()
 
-	sumPower := 0
+	var sumPower int64 = 0
 	for i := 0; i < len(gameList); i++ {
 		sumPower += CalculatePower(gameList[i])
 	}
@@ -80,8 +79,8 @@ func SumPowerSets() (int, error) {
 	return sumPower, nil
 }
 
-func CalculatePower(game string) int {
-	maxColors := make(map[string]int)
+func CalculatePower(game string) int64 {
+	maxColors := make(map[string]int64)
 	for key := range colors {
 		maxColors[key] = 0
 	}
@@ -101,13 +100,13 @@ func CalculatePower(game string) int {
 				return 0
 			}
 
-			if count > maxColors[color] {
-				maxColors[color] = count
+			if int64(count) > maxColors[color] {
+				maxColors[color] = int64(count)
 			}
 		}
 	}
 
-	totalPower := 1
+	var totalPower int64 = 1
 	for key := range colors {
 		totalPower *= maxColors[key]
 	}

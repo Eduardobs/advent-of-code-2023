@@ -7,14 +7,22 @@ import (
 	"strings"
 )
 
-func FindCalibrateValue(checkNumberString bool) (int, error) {
+func FindCalibratedValueWithNumberString() (int64, error) {
+	return FindCalibrateValue(true)
+}
+
+func FindCalibratedValueWithoutNumberString() (int64, error) {
+	return FindCalibrateValue(false)
+}
+
+func FindCalibrateValue(checkNumberString bool) (int64, error) {
 	content, err := os.ReadFile("./2023/Day1/input.txt")
 	if err != nil {
 		return -1, errors.New("file not found")
 	}
 	lines := strings.Split(string(content), "\n")
 
-	total := 0
+	var total int64 = 0
 	for i := 0; i < len(lines); i++ {
 		total += getNumbers(lines[i], checkNumberString)
 	}
@@ -22,9 +30,9 @@ func FindCalibrateValue(checkNumberString bool) (int, error) {
 	return total, nil
 }
 
-func getNumbers(line string, checkNumberString bool) int {
-	firstNumber := -1
-	lastNumber := -1
+func getNumbers(line string, checkNumberString bool) int64 {
+	var firstNumber int64 = -1
+	var lastNumber int64 = -1
 
 	for index, char := range line {
 		if checkNumberString {
@@ -40,9 +48,9 @@ func getNumbers(line string, checkNumberString bool) int {
 
 		if number, err := strconv.Atoi(string(char)); err == nil {
 			if firstNumber == -1 {
-				firstNumber = number
+				firstNumber = int64(number)
 			}
-			lastNumber = number
+			lastNumber = int64(number)
 		}
 	}
 
@@ -51,8 +59,8 @@ func getNumbers(line string, checkNumberString bool) int {
 	return resultNumber
 }
 
-func checkStringNumber(line string) (int, error) {
-	numbersMap := map[string]int{
+func checkStringNumber(line string) (int64, error) {
+	numbersMap := map[string]int64{
 		"one":   1,
 		"two":   2,
 		"three": 3,

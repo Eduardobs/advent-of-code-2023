@@ -3,48 +3,24 @@ package main
 import (
 	"AdventOfCode/2023/Day1"
 	"AdventOfCode/2023/Day2"
+	"AdventOfCode/2023/Day3"
 	"fmt"
 )
 
 func main() {
-	ExecuteDay1Problem1()
-	ExecuteDay1Problem2()
-	ExecuteDay2Problem1()
-	ExecuteDay2Problem2()
+	Execute(Day1.FindCalibratedValueWithNumberString, "Day 1, problem 1 result")
+	Execute(Day1.FindCalibratedValueWithoutNumberString, "Day 1, problem 2 result")
+	Execute(Day2.CheckPossibleGames, "Day 2, problem 1 result")
+	Execute(Day2.SumPowerSets, "Day 2, problem 2 result")
+	Execute(Day3.GetSumEngine, "Day 3, problem 1 result")
+	Execute(Day3.GetSumEngineRatio, "Day 3, problem 2 result")
 }
 
-func ExecuteDay1Problem1() {
-	calibrateValue, err := Day1.FindCalibrateValue(false)
+func Execute(funcExecute func() (int64, error), successMsg string) {
+	result, err := funcExecute()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Printf("First day, problem 1 result: %d\n", calibrateValue)
-}
-
-func ExecuteDay1Problem2() {
-	calibrateValue, err := Day1.FindCalibrateValue(true)
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Printf("First day, problem 2 result: %d\n", calibrateValue)
-}
-
-func ExecuteDay2Problem1() {
-	possibleGames, err := Day2.CheckPossibleGames()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Printf("Second day, problem 1 result: %d\n", possibleGames)
-}
-
-func ExecuteDay2Problem2() {
-	possibleGames, err := Day2.SumPowerSets()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Printf("Second day, problem 1 result: %d\n", possibleGames)
+	fmt.Printf("%s: %d\n", successMsg, result)
 }
