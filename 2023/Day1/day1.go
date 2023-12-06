@@ -7,12 +7,12 @@ import (
 	"strings"
 )
 
-func FindCalibratedValueWithNumberString() (int64, error) {
-	return FindCalibrateValue(true)
+func FirstProblem() (int64, error) {
+	return FindCalibrateValue(false)
 }
 
-func FindCalibratedValueWithoutNumberString() (int64, error) {
-	return FindCalibrateValue(false)
+func SecondProblem() (int64, error) {
+	return FindCalibrateValue(true)
 }
 
 func FindCalibrateValue(checkNumberString bool) (int64, error) {

@@ -14,7 +14,7 @@ var colors = map[string]int64{
 	"blue":  14,
 }
 
-func CheckPossibleGames() (int64, error) {
+func FirstProblem() (int64, error) {
 	gameList, _ := loadInput()
 
 	var possiblesGames int64 = 0
@@ -68,7 +68,7 @@ func checkIsPossibleSet(gameSet string) bool {
 	return true
 }
 
-func SumPowerSets() (int64, error) {
+func SecondProblem() (int64, error) {
 	gameList, _ := loadInput()
 
 	var sumPower int64 = 0

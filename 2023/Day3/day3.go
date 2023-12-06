@@ -9,11 +9,11 @@ import (
 	"unicode"
 )
 
-func GetSumEngineRatio() (int64, error) {
+func SecondProblem() (int64, error) {
 	return Calculate(true)
 }
 
-func GetSumEngine() (int64, error) {
+func FirstProblem() (int64, error) {
 	return Calculate(false)
 }
 
